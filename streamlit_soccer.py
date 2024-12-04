@@ -8,7 +8,7 @@ METADATA_FILE = "video_metadata.csv"
 
 metrics = {
     "Action Accuracy": "How well the commentary captures the action in the video.",
-    "Player Identification": "How accurately the commentary identifies the players involved.",
+    "Player/Team Identification": "How accurately the commentary identifies the players and teams involved.",
     "Scorecard Relevance": "How well the commentary reflects the score or state of the game.",
     "Event Chronology": "How well the sequence of events in the commentary matches the video.",
     "Commentary Quality": "The overall relevance, fluency, and engagement level of the commentary."
@@ -16,7 +16,7 @@ metrics = {
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 if not os.path.exists(CSV_FILE):
-    pd.DataFrame(columns=["Video Name", "Action Accuracy", "Player Identification", "Scorecard Relevance",
+    pd.DataFrame(columns=["Video Name", "Action Accuracy", "Player/Team Identification", "Scorecard Relevance",
                           "Event Chronology", "Commentary Quality", "Preferred Model"]).to_csv(CSV_FILE, index=False)
 
 if not os.path.exists(METADATA_FILE):
@@ -105,7 +105,7 @@ if mode == "Admin Mode":
         if st.button("Delete Ratings CSV"):
             if os.path.exists(CSV_FILE):
                 os.remove(CSV_FILE)
-                pd.DataFrame(columns=["Video Name", "Action Accuracy", "Player Identification", "Scorecard Relevance",
+                pd.DataFrame(columns=["Video Name", "Action Accuracy", "Player/Team Identification", "Scorecard Relevance",
                                       "Event Chronology", "Commentary Quality", "Preferred Model"]).to_csv(CSV_FILE, index=False)
                 st.success("Ratings CSV deleted and reinitialized.")
             else:
