@@ -99,19 +99,39 @@ if mode == "Admin Mode":
                     file_name="video_metadata.csv",
                     mime="text/csv",
                 )
-        
-        st.subheader("Delete CSV Files")
-        if st.button("Delete All CSV Files"):
+
+
+        st.subheader("Delete Ratings CSV")
+        if st.button("Delete Ratings CSV"):
             if os.path.exists(CSV_FILE):
                 os.remove(CSV_FILE)
                 pd.DataFrame(columns=["Video Name", "Action Accuracy", "Player Identification", "Scorecard Relevance",
                                       "Event Chronology", "Commentary Quality", "Preferred Model"]).to_csv(CSV_FILE, index=False)
                 st.success("Ratings CSV deleted and reinitialized.")
+            else:
+                st.warning("Ratings CSV file not found.")
 
+        st.subheader("Delete Metadata CSV")
+        if st.button("Delete Metadata CSV"):
             if os.path.exists(METADATA_FILE):
                 os.remove(METADATA_FILE)
+        
                 pd.DataFrame(columns=["Video Name", "MatchTime Commentary", "Llava-Qwen Commentary"]).to_csv(METADATA_FILE, index=False)
                 st.success("Metadata CSV deleted and reinitialized.")
+            else:
+                st.warning("Metadata CSV file not found.")
+        # st.subheader("Delete CSV Files")
+        # if st.button("Delete All CSV Files"):
+        #     if os.path.exists(CSV_FILE):
+        #         os.remove(CSV_FILE)
+        #         pd.DataFrame(columns=["Video Name", "Action Accuracy", "Player Identification", "Scorecard Relevance",
+        #                               "Event Chronology", "Commentary Quality", "Preferred Model"]).to_csv(CSV_FILE, index=False)
+        #         st.success("Ratings CSV deleted and reinitialized.")
+
+        #     if os.path.exists(METADATA_FILE):
+        #         os.remove(METADATA_FILE)
+        #         pd.DataFrame(columns=["Video Name", "MatchTime Commentary", "Llava-Qwen Commentary"]).to_csv(METADATA_FILE, index=False)
+        #         st.success("Metadata CSV deleted and reinitialized.")
     else:
         st.error("Invalid passcode. Please try again.")
 
